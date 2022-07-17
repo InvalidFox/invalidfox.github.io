@@ -24,7 +24,7 @@
 
   
 
-  <title>排序算法 | InvalidFox&#39;s</title>
+  <title>常用汇编指令 | InvalidFox&#39;s</title>
 
   
 
@@ -47,7 +47,7 @@
 <!-- header container -->
 <header class="header-container post">
   
-    <div class="post-image" style="background-image: url(https://raw.githubusercontent.com/InvalidFox/invalidfox.github.io/main/girl1.jpeg)"></div>
+    <div class="post-image" style="background-image: url(https://qiniu.sukoshi.xyz/src/images/68686407_p0.jpg)"></div>
   
 
   <!-- navbar -->
@@ -98,24 +98,16 @@
     <div class="header-content">
       <div class="post-text layout-block">
         <div class="layout-margin">
-          <h1 class="title-wrap">排序算法</h1>
+          <h1 class="title-wrap">常用汇编指令</h1>
           <h2 class="title-sub-wrap">
             <strong>InvalidFox</strong>
             <span>发布于</span>
-            <time  class="article-date" datetime="2022-07-05T09:23:17.000Z" itemprop="datePublished">2022-07-05</time>
+            <time  class="article-date" datetime="2022-07-15T14:59:25.000Z" itemprop="datePublished">2022-07-15</time>
           </h2>
           <ul class="wrap-list dark">
   
-    <li><a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">📒 数据结构与算法</a></li>
-  
 </ul>
           <ul class="wrap-list dark">
-  
-    <li><a href="/tags/go/">🏷️ go</a></li>
-  
-    <li><a href="/tags/note/">🏷️ note</a></li>
-  
-    <li><a href="/tags/%E8%AE%B0%E5%BD%95%E5%A4%87%E5%BF%98/">🏷️ 记录备忘</a></li>
   
 </ul>
         </div>
@@ -139,30 +131,7 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h1 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h1><p>这些东西都有现成的轮子, 所以时间长了一不用很快就忘记了<br>因此记录下来, 免去一个一个查的麻烦</p>
-<hr>
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a><font color="palegrenn">归并排序</font></h2><h3 id="时间复杂度低-但是需要额外的内存"><a href="#时间复杂度低-但是需要额外的内存" class="headerlink" title="时间复杂度低 但是需要额外的内存"></a>时间复杂度低 但是需要额外的内存</h3><ol>
-<li>通过递归不断的将数组一分为二</li>
-<li>当分出的两个小数组都只有一个元素时, 开始返回</li>
-<li>用两个指针指向两个数组, 把较小的元素排第一位, 并将其指针前进一</li>
-<li>当其中一个数组遍历完成, 将另一个数组的所有元素归并后返回</li>
-<li>当调用栈逐层退出到顶层, 数组排序完成</li>
-</ol>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">merge</span><span class="hljs-params">(left []<span class="hljs-type">int</span>, right []<span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;<br>	i, j := <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>	nums := []<span class="hljs-type">int</span>&#123;&#125;<br>	<span class="hljs-keyword">for</span> i &lt; <span class="hljs-built_in">len</span>(left) &amp;&amp; j &lt; <span class="hljs-built_in">len</span>(right) &#123;<br>		<span class="hljs-keyword">if</span> left[i] &gt; right[j] &#123;<br>			nums = <span class="hljs-built_in">append</span>(nums, right[j])<br>			j++<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			nums = <span class="hljs-built_in">append</span>(nums, left[i])<br>			i++<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">if</span> i == <span class="hljs-built_in">len</span>(left) &#123;<br>		<span class="hljs-keyword">for</span> ; j &lt; <span class="hljs-built_in">len</span>(right); j++ &#123;<br>			nums = <span class="hljs-built_in">append</span>(nums, right[j])<br>		&#125;<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-keyword">for</span> ; i &lt; <span class="hljs-built_in">len</span>(left); i++ &#123;<br>			nums = <span class="hljs-built_in">append</span>(nums, left[i])<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> nums<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">MergeSort</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;<br>	top := <span class="hljs-built_in">len</span>(nums)<br>	mid := top / <span class="hljs-number">2</span><br>	<span class="hljs-keyword">if</span> top == <span class="hljs-number">1</span> &#123;<br>		<span class="hljs-keyword">return</span> nums<br>	&#125;<br>	left, right := nums[<span class="hljs-number">0</span>:mid], nums[mid:]<br>	<span class="hljs-keyword">return</span> merge(MergeSort(left), MergeSort(right))<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>(Go)</p>
-<hr>
-<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a><font color=gold>快速排序</font></h2><h3 id="时间复杂度比归并排序更低-性能更好"><a href="#时间复杂度比归并排序更低-性能更好" class="headerlink" title="时间复杂度比归并排序更低 性能更好"></a>时间复杂度比归并排序更低 性能更好</h3><h3 id="是目前性能最好的排序算法"><a href="#是目前性能最好的排序算法" class="headerlink" title="是目前性能最好的排序算法"></a>是目前性能最好的排序算法</h3><ol>
-<li>从数组中挑出一个元素</li>
-<li>把比这个元素大的放到右边, 小的放到左边</li>
-<li>以这个元素为界将数组一分为二, 对每一个分区递归地重复此操作</li>
-</ol>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">QuickSort</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;<br>	<span class="hljs-keyword">return</span> _quickSort(arr, <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(arr)<span class="hljs-number">-1</span>)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> _<span class="hljs-title">quickSort</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>, left, right <span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;<br>	<span class="hljs-keyword">if</span> left &lt; right &#123;<br>		partitionIndex := partition(arr, left, right)<br>		_quickSort(arr, left, partitionIndex<span class="hljs-number">-1</span>)<br>		_quickSort(arr, partitionIndex+<span class="hljs-number">1</span>, right)<br>	&#125;<br>	<span class="hljs-keyword">return</span> arr<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">partition</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>, left, right <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	pivot := left<br>	index := pivot + <span class="hljs-number">1</span><br><br>	<span class="hljs-keyword">for</span> i := index; i &lt;= right; i++ &#123;<br>		<span class="hljs-keyword">if</span> arr[i] &lt; arr[pivot] &#123;<br>			arr[i], arr[index] = arr[index], arr[i]<br>			index += <span class="hljs-number">1</span><br>		&#125;<br>	&#125;<br>	arr[pivot], arr[index<span class="hljs-number">-1</span>] = arr[index<span class="hljs-number">-1</span>], arr[pivot]<br>	<span class="hljs-keyword">return</span> index - <span class="hljs-number">1</span><br>&#125;<br></code></pre></td></tr></table></figure>
-<p>(Go)</p>
-<hr>
-<h2 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a><font color="indianred">堆排序</font></h2><h3 id="效率与前两者相近-比归并排序节省空间"><a href="#效率与前两者相近-比归并排序节省空间" class="headerlink" title="效率与前两者相近, 比归并排序节省空间"></a>效率与前两者相近, 比归并排序节省空间</h3><h3 id="唯一的问题是堆的频繁维护带来的不必要浪费"><a href="#唯一的问题是堆的频繁维护带来的不必要浪费" class="headerlink" title="唯一的问题是堆的频繁维护带来的不必要浪费"></a>唯一的问题是堆的频繁维护带来的不必要浪费</h3><p>还不是很能理解这个算法</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">HeapSort</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;<br>	arrLen := <span class="hljs-built_in">len</span>(arr)<br>	_buildMaxHeap(arr, arrLen)<br>	<span class="hljs-keyword">for</span> i := arrLen - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i-- &#123;<br>		arr[<span class="hljs-number">0</span>], arr[i] = arr[i], arr[<span class="hljs-number">0</span>]<br>		arrLen -= <span class="hljs-number">1</span><br>		_heapify(arr, <span class="hljs-number">0</span>, arrLen)<br>	&#125;<br>	<span class="hljs-keyword">return</span> arr<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> _<span class="hljs-title">buildMaxHeap</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>, arrLen <span class="hljs-type">int</span>)</span></span> &#123;<br>	<span class="hljs-keyword">for</span> i := arrLen / <span class="hljs-number">2</span>; i &gt;= <span class="hljs-number">0</span>; i-- &#123;<br>		_heapify(arr, i, arrLen)<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> _<span class="hljs-title">heapify</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>, i, arrLen <span class="hljs-type">int</span>)</span></span> &#123;<br>	left := <span class="hljs-number">2</span>*i + <span class="hljs-number">1</span><br>	right := <span class="hljs-number">2</span>*i + <span class="hljs-number">2</span><br>	largest := i<br>	<span class="hljs-keyword">if</span> left &lt; arrLen &amp;&amp; arr[left] &gt; arr[largest] &#123;<br>		largest = left<br>	&#125;<br>	<span class="hljs-keyword">if</span> right &lt; arrLen &amp;&amp; arr[right] &gt; arr[largest] &#123;<br>		largest = right<br>	&#125;<br>	<span class="hljs-keyword">if</span> largest != i &#123;<br>		arr[i], arr[largest] = arr[largest], arr[i]<br>		_heapify(arr, largest, arrLen)<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>(Go)</p>
-<hr>
+        <p>在这里一次性的</p>
 
       </section>
 
@@ -170,28 +139,16 @@
       
         <nav class="article-nav">
           
-            <div class="article-nav-item layout-padding">
-  <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
-    
-    <div class="card-text">
-      
-        <a href="/2022/07/15/%E5%B8%B8%E7%94%A8%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">常用汇编指令</h2>
-        </a>
-      
-      <div class="card-text--row">Newer</div>
-    </div>
-  </article>
-</div>
-          
           
             <div class="article-nav-item layout-padding">
   <article class="card-container article-nav-card content-padding--primary soft-size--large soft-style--box">
     
+      <div class="card-cover" background-image-lazy data-img="https://raw.githubusercontent.com/InvalidFox/invalidfox.github.io/main/girl1.jpeg"></div>
+    
     <div class="card-text">
       
-        <a href="/2022/07/05/hello-world/" itemprop="url">
-          <h2 class="card-text--title text-ellipsis">Hello World</h2>
+        <a href="/2022/07/05/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" itemprop="url">
+          <h2 class="card-text--title text-ellipsis">排序算法</h2>
         </a>
       
       <div class="card-text--row">Older</div>
