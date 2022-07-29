@@ -137,13 +137,50 @@
       
       
       <section class="article-entry markdown-body layout-margin content-padding--large soft-size--large soft-style--box">
-        <h2 id="ZF-Zero-Flag"><a href="#ZF-Zero-Flag" class="headerlink" title="ZF (Zero Flag)"></a><font color="cyan">ZF</font> (Zero Flag)</h2><p>零标志位<br>当操作的结果为0 ZF设为1<br>反之为0</p>
+        <h1 id="数据寄存器"><a href="#数据寄存器" class="headerlink" title="数据寄存器"></a><font color=palegreen>数据寄存器</font></h1><p>四个32位数据寄存器用于算术，逻辑和其他操作。 这些32位寄存器可以三种方式使用 -  </p>
+<ul>
+<li>作为完整的32位数据寄存器:EAX，EBX，ECX，EDX。  </li>
+<li>32位寄存器的下半部分可用作4个16位数据寄存器:AX，BX，CX和DX。  </li>
+<li>上述四个16位寄存器的低半部分和高半部分可用作8个8位数据寄存器:AH，AL，BH，BL，CH，CL，DH和DL。</li>
+</ul>
+<p>其中一些数据寄存器在算术运算中具有特定用途。</p>
+<ul>
+<li>AX is the primary accumulator ; 它用于输入&#x2F;输出和大多数算术指令。 例如，在乘法运算中，根据操作数的大小，一个操作数存储在EAX或AX或AL寄存器中。</li>
+<li>BX is known as the base register ，因为它可以用于索引寻址。</li>
+<li>CX is known as the count register ，因为ECX，CX寄存器在迭代操作中存储循环计数。</li>
+<li>DX is known as the data register 。 它也用于输入&#x2F;输出操作。 它还与AX寄存器以及DX一起用于涉及大值的乘法和除法运算。</li>
+</ul>
+<h1 id="指针寄存器"><a href="#指针寄存器" class="headerlink" title="指针寄存器"></a><font color=indianred>指针寄存器</font></h1><p>指针寄存器是32位EIP，ESP和EBP寄存器以及相应的16位右部分IP，SP和- BP。 指针寄存器分为三类 -</p>
+<ul>
+<li>Instruction Pointer (IP) - 16位IP寄存器存储下一条要执行的指令的偏移地址。 与CS寄存器相关联的IP（作为CS:IP）给出代码段中当前指令的完整地址。</li>
+<li>Stack Pointer (SP) - 16位SP寄存器提供程序堆栈中的偏移值。 与SS寄存器（SS:SP）相关联的SP指的是程序堆栈内的数据或地址的当前位置。<br>Base Pointer (BP) - 16位BP寄存器主要用于引用传递给子程序的参数变量。 SS寄存器中的地址与BP中的偏移量组合以获得参数的位置。 BP也可以与DI和SI组合作为特殊寻址的基址寄存器。</li>
+</ul>
+<h1 id="索引寄存器"><a href="#索引寄存器" class="headerlink" title="索引寄存器"></a><font color=cyan>索引寄存器</font></h1><p>32位索引寄存器，ESI和EDI，以及它们最右边的16位部分。 SI和DI用于索引寻址，有时用于加法和减法。 有两组索引指针 -</p>
+<ul>
+<li>Source Index (SI) - 用作字符串操作的源索引。</li>
+<li>Destination Index (DI) - 用作字符串操作的目标索引。</li>
+</ul>
+<h1 id="控制寄存器"><a href="#控制寄存器" class="headerlink" title="控制寄存器"></a><font color=gold>控制寄存器</font></h1><p>32位指令指针寄存器和32位标志寄存器组合被认为是控制寄存器。<br>许多指令涉及比较和数学计算，并且更改标志的状态，并且一些其他条件指令测试这些状态标志的值以将控制流程带到其他位置。<br>公共标志位是:</p>
+<ul>
+<li>Overflow Flag (OF) - 表示在带符号算术运算后数据的高位（最左位）溢出。<br>Direction Flag (DF) - 它确定移动或比较字符串数据的左或右方向。 当DF值为0时，字符串操作采用从左到右的方向，当值设置为1时，字符串操作采用从右到左的方向。</li>
+<li>Interrupt Flag (IF) - 它确定是否要忽略或处理键盘输入等外部中断。 它在值为0时禁用外部中断，在设置为1时启用中断。</li>
+<li>Trap Flag (TF) - 它允许以单步模式设置处理器的操作。 我们使用的DEBUG程序设置了陷阱标志，因此我们可以一次执行一条指令。</li>
+<li>Sign Flag (SF) - 它显示算术运算结果的符号。 根据算术运算后的数据项的符号设置该标志。 符号由最左边的位的高位表示。 正结果将SF的值清除为0，否定结果将其设置为1。</li>
+<li>Zero Flag (ZF) - 它表示算术或比较运算的结果。 非零结果将零标志清除为0，零结果将其设置为1。</li>
+<li>Auxiliary Carry Flag (AF) - 它包含算术运算后从第3位到第4位的进位; 用于专业算术。 当1字节算术运算导致从第3位进位到第4位时，AF置位。</li>
+<li>Parity Flag (PF) - 它表示从算术运算获得的结果中的1位总数。 偶数个1位将奇偶校验标志清除为0，奇数个1位将奇偶校验标志设置为1。</li>
+<li>Carry Flag (CF) - 在算术运算后，它包含来自高位（最左边）的0或1的进位。 它还存储shift或rotate操作的最后一位的内容。<br>下表显示了16位Flags寄存器中标志位的位置:</li>
+</ul>
+<h1 id="细分寄存器"><a href="#细分寄存器" class="headerlink" title="细分寄存器"></a><font color=pink>细分寄存器</font></h1><p>段是在程序中定义的用于包含数据，代码和堆栈的特定区域。 主要有三个部分 -</p>
+<ul>
+<li>Code Segment - 它包含要执行的所有指令。 16位代码段寄存器或CS寄存器存储代码段的起始地址。</li>
+<li>Data Segment - 它包含数据，常量和工作区域。 16位数据段寄存器或DS寄存器存储数据段的起始地址。</li>
+<li>Stack Segment - 它包含过程或子例程的数据和返回地址。 它被实现为“堆栈”数据结构。 堆栈段寄存器或SS寄存器存储堆栈的起始地址。<br>除DS，CS和SS寄存器外，还有其他额外的段寄存器 - ES（额外段），FS和GS，它们提供用于存储数据的附加段。</li>
+</ul>
 <hr>
-<h2 id="SF-Symbol-Flag"><a href="#SF-Symbol-Flag" class="headerlink" title="SF (Symbol Flag)"></a><font color="orange">SF</font> (Symbol Flag)</h2><p>符号标志位<br>当操作的结果为负 SF设为1<br>结果为非负 SF设为0</p>
-<hr>
-<h2 id="OF-Overflow-Flag"><a href="#OF-Overflow-Flag" class="headerlink" title="OF (Overflow Flag)"></a><font color="palegreen">OF</font> (Overflow Flag)</h2><p>溢出标志位<br>当运算产生溢出 OF设为1<br>否则设为0</p>
-<hr>
-<h2 id="DF"><a href="#DF" class="headerlink" title="DF"></a><font color="indianred">DF</font></h2>
+<p>在汇编编程中，程序需要访问存储器位置。 段内的所有存储器位置都相对于段的起始地址。 段开始于可被16或十六进制10整除的地址。因此，所有这些存储器地址中最右边的十六进制数字是0，通常不存储在段寄存器中。<br>段寄存器存储段的起始地址。 要获得段内数据或指令的确切位置，需要偏移值（或位移）。 为了引用段中的任何存储器位置，处理器将段寄存器中的段地址与位置的偏移值组合。</p>
+<p>原链接(<a target="_blank" rel="noopener" href="https://iowiki.com/assembly_programming/assembly_registers.html">https://iowiki.com/assembly_programming/assembly_registers.html</a>)</p>
+
       </section>
 
       
